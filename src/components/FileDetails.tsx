@@ -28,16 +28,12 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
     // console.log(selectedFile);
 
     try {
-      const response = await axios.put(
-        `http://localhost:3000/file/update/${fileId}`,
-        formData,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-            refreshToken: localStorage.getItem("refreshToken"),
-          },
-        }
-      );
+      await axios.put(`http://localhost:3000/file/update/${fileId}`, formData, {
+        headers: {
+          authorization: localStorage.getItem("accessToken"),
+          refreshToken: localStorage.getItem("refreshToken"),
+        },
+      });
       // console.log(response);
       setMessage("File updated successfully.");
       fetchFileDetails(
