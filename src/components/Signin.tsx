@@ -10,7 +10,10 @@ function Signin({ setUser, setSignedIn }: any) {
 
   const submit = () => {
     axios
-      .post("http://localhost:3000/signin", { username, password })
+      .post(`${import.meta.env.VITE_REACT_APP_API_URL}/signin`, {
+        username,
+        password,
+      })
       .then((user) => {
         localStorage.setItem("accessToken", user.data.accessToken);
         localStorage.setItem("refreshToken", user.data.refreshToken);

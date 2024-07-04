@@ -10,7 +10,10 @@ function Signup({ setUser, setSignedIn }: any) {
 
   const submit = () => {
     axios
-      .post("http://localhost:3000/signup", { username, password })
+      .post(`${import.meta.env.VITE_REACT_APP_API_URL}/signup`, {
+        username,
+        password,
+      })
       .then((user) => {
         // console.log(user.data.username);
         localStorage.setItem("accessToken", user.data.accessToken);

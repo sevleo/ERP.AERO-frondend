@@ -16,7 +16,7 @@ function Latency({ signedIn, setSignedIn, setUser }: any) {
     const refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .get("http://localhost:3000/latency", {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/latency`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,

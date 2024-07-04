@@ -28,12 +28,16 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
     // console.log(selectedFile);
 
     try {
-      await axios.put(`http://localhost:3000/file/update/${fileId}`, formData, {
-        headers: {
-          authorization: localStorage.getItem("accessToken"),
-          refreshToken: localStorage.getItem("refreshToken"),
-        },
-      });
+      await axios.put(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/file/update/${fileId}`,
+        formData,
+        {
+          headers: {
+            authorization: localStorage.getItem("accessToken"),
+            refreshToken: localStorage.getItem("refreshToken"),
+          },
+        }
+      );
       // console.log(response);
       setMessage("File updated successfully.");
       fetchFileDetails(
@@ -52,7 +56,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
     const refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .get(`http://localhost:3000/verify-token`, {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/verify-token`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -103,7 +107,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
     fileId: string
   ) => {
     axios
-      .get(`http://localhost:3000/file/${fileId}`, {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/file/${fileId}`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,

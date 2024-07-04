@@ -15,7 +15,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
     const refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .get("http://localhost:3000/verify-token", {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/verify-token`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -63,7 +63,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:3000/logout", {
+      .post(`${import.meta.env.VITE_REACT_APP_API_URL}/logout`, {
         accessToken: localStorage.getItem("accessToken"),
         refreshToken: localStorage.getItem("refreshToken"),
       })
@@ -96,7 +96,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/file/upload",
+        `${import.meta.env.VITE_REACT_APP_API_URL}/file/upload`,
         formData,
         {
           headers: {
@@ -135,7 +135,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
         ) : (
           <>
             <div>
-              <h1>Welcome!</h1>
+              <h1 className="">Welcome!</h1>
               <p>Sign in to your account:</p>
               <Signin setUser={setUser} setSignedIn={setSignedIn} />
               <p>Don't have an account yet?</p>

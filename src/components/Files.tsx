@@ -19,7 +19,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
     // console.log(refreshToken);
 
     axios
-      .get("http://localhost:3000/verify-token", {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/verify-token`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -73,7 +73,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
     listSize: number
   ) => {
     axios
-      .get("http://localhost:3000/file/list", {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/file/list`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -112,7 +112,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
     const refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .delete(`http://localhost:3000/file/delete/${id}`, {
+      .delete(`${import.meta.env.VITE_REACT_APP_API_URL}/file/delete/${id}`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -135,7 +135,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
     const refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .get(`http://localhost:3000/file/${fileId}`, {
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/file/${fileId}`, {
         headers: {
           authorization: accessToken,
           refreshToken: refreshToken,
@@ -150,13 +150,16 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         const fileName = res.data.file.file_name;
         // console.log(`${fileName}`);
         axios
-          .get(`http://localhost:3000/file/download/${fileId}`, {
-            headers: {
-              authorization: accessToken,
-              refreshToken: refreshToken,
-            },
-            responseType: "blob",
-          })
+          .get(
+            `${import.meta.env.VITE_REACT_APP_API_URL}/file/download/${fileId}`,
+            {
+              headers: {
+                authorization: accessToken,
+                refreshToken: refreshToken,
+              },
+              responseType: "blob",
+            }
+          )
           .then((res) => {
             // console.log(res);
             const blob = new Blob([res.data], {
