@@ -22,7 +22,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
@@ -31,7 +31,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
         setLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
         setSignedIn(false);
 
@@ -72,7 +72,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
         setUser("");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -92,7 +92,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await axios.post(
@@ -110,7 +110,7 @@ function Home({ signedIn, setSignedIn, user, setUser }: any) {
         localStorage.setItem("accessToken", response.data.newAccessToken);
       }
       setMessage(response.data.message);
-      console.log(response);
+      // console.log(response);
       // fetchFiles();
     } catch (err) {
       console.error("Error uploading file:", err);

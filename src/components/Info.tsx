@@ -28,7 +28,7 @@ function Info({ signedIn, setSignedIn, user, setUser }: any) {
         setLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
         setSignedIn(false);
 

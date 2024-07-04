@@ -12,7 +12,7 @@ function Signup({ setUser, setSignedIn }: any) {
     axios
       .post("http://localhost:3000/signup", { username, password })
       .then((user) => {
-        console.log(user.data.username);
+        // console.log(user.data.username);
         localStorage.setItem("accessToken", user.data.accessToken);
         localStorage.setItem("refreshToken", user.data.refreshToken);
         setErrorMessage("");
@@ -20,7 +20,7 @@ function Signup({ setUser, setSignedIn }: any) {
         setSignedIn(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setErrorMessage(err.response.data.message);
       });
   };

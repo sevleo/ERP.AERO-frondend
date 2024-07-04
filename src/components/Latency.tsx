@@ -32,7 +32,7 @@ function Latency({ signedIn, setSignedIn, setUser }: any) {
         setLatency(res.data.latency);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
         setSignedIn(false);
 

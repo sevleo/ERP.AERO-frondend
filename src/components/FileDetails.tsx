@@ -24,8 +24,8 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
     const formData = new FormData();
     formData.append("file", selectedFile as any);
 
-    console.log(fileId);
-    console.log(selectedFile);
+    // console.log(fileId);
+    // console.log(selectedFile);
 
     try {
       const response = await axios.put(
@@ -38,7 +38,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       setMessage("File updated successfully.");
       fetchFileDetails(
         localStorage.getItem("accessToken") as string,
@@ -63,7 +63,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
@@ -72,7 +72,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
         fetchFileDetails(accessToken as any, refreshToken as any, id as any);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
 
         // if (
@@ -118,7 +118,7 @@ export default function FileDetails({ signedIn, setSignedIn, setUser }: any) {
         setLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
       });
   };

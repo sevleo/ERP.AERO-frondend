@@ -15,8 +15,8 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     const refreshToken = localStorage.getItem("refreshToken");
-    console.log(accessToken);
-    console.log(refreshToken);
+    // console.log(accessToken);
+    // console.log(refreshToken);
 
     axios
       .get("http://localhost:3000/verify-token", {
@@ -26,7 +26,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
@@ -36,7 +36,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         // setLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
         setSignedIn(false);
 
@@ -87,13 +87,13 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
-        console.log(res);
+        // console.log(res);
         setFiles(res.data.files);
         setTotalPages(res.data.totalPages);
         setLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoaded(true);
       });
   };
@@ -122,11 +122,11 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
-        console.log(res.data.message);
+        // console.log(res.data.message);
         fetchFiles(accessToken as any, refreshToken as any, page, listSize);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -142,13 +142,13 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.data.newAccessToken) {
           localStorage.setItem("accessToken", res.data.newAccessToken);
         }
         const fileName = res.data.file.file_name;
-        console.log(`${fileName}`);
+        // console.log(`${fileName}`);
         axios
           .get(`http://localhost:3000/file/download/${fileId}`, {
             headers: {
@@ -158,7 +158,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
             responseType: "blob", // Specify the response type as blob
           })
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             // Create a blob object from the response data
             const blob = new Blob([res.data], {
               type: res.headers["content-type"],
@@ -181,7 +181,7 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
       })
 
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
