@@ -155,19 +155,16 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
               authorization: accessToken,
               refreshToken: refreshToken,
             },
-            responseType: "blob", // Specify the response type as blob
+            responseType: "blob",
           })
           .then((res) => {
             // console.log(res);
-            // Create a blob object from the response data
             const blob = new Blob([res.data], {
               type: res.headers["content-type"],
             });
 
-            // Create a temporary URL for the blob
             const url = window.URL.createObjectURL(blob);
 
-            // Create a link element and simulate click to trigger download
             const link = document.createElement("a");
             link.href = url;
             link.setAttribute("download", `${fileName}`); // Set the file name for download
@@ -175,7 +172,6 @@ export default function Files({ signedIn, setSignedIn, setUser }: any) {
             link.click();
             document.body.removeChild(link);
 
-            // Clean up: Revoke the URL object
             window.URL.revokeObjectURL(url);
           });
       })
